@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import ValidationError
+
+from authorization.validators import UserValidator
 
 
 def get_user_by_params(**params):
@@ -13,7 +16,15 @@ def get_user_by_params(**params):
 
 def create_user_by_params(**params):
     """Creates the user by params"""
-    return User.objects.create_user(**params)
+    username = params.get('username')
+    password = params.get('password')
+
+    if username and password:
+        user = User(username=username, password=password)
+        UserValidator.validate(user)
+        return User.objects.create_user(**params)
+    else:
+        raise ValidationError(message='Username or password not specified')
 
 
 def get_all_users():

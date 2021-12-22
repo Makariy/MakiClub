@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.validators import ValidationError
 
-from authorization.services.db_services import get_user_by_params
-
 # Django's user validators
 
 
@@ -13,7 +11,7 @@ def user_validate_username(user: User):
 
 
 def user_validate_username_unique(user: User):
-    if get_user_by_params(username=user.username) is None:
+    if User.objects.filter(username=user.username).count() == 0:
         return True
     raise ValidationError(message="User with this name already exists")
 
