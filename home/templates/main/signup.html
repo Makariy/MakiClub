@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+	<section class="login">
+		<div class="container">
+			<div class="login__inner">
+				<h1 class="login__title">
+					Register
+				</h1>
+				<div class="login__fields">
+					{% csrf_token %}
+					<input type="text" name="username" id="id_username">
+					<input type="password" name="password" id="id_password">
+					<button onclick="sendForm()" class="login__submit">
+						<p class="login__submit_text">Sign up</p>
+					</button>
+					<p class="login__errors" id="id_login__errors"></p>
+				</div>
+				<p class="login__signin">
+					Already registered?
+					<a href="{% url 'login'  %}" class="login__help-link">Login!
+					</a>
+				</p>
+				<p class="login__help">
+					Need help?
+					<a href="#" class="login__help-link">Please click here...</a>
+				</p>
+			</div>
+		</div>
+	</section>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		function sendForm() {
+			var username = document.getElementById('id_username').value;
+			var password = document.getElementById('id_password').value;
+			var csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+			if (username != "" && password != "") {
+				$.ajax({
+					type: "POST",
+					data: {'username': username, 'password': password, 'csrfmiddlewaretoken': csrf_token},
+				}).done(
+					function(response) {
+						console.log(response);
+						if (response.status == 'success') {
+							document.location.href = document.location.origin + response.next;
+						}
+						else {
+							document.getElementById('id_login__errors').innerText = response.message;
+						}
+					}
+				);
+			}
+		}
+
+		document.addEventListener("keydown", function(event) {
+		  if (event.keyCode === 13) {
+			event.preventDefault();
+			sendForm()
+		  }
+		});
+
+		document.getElementById('id_username').placeholder = 'Name';
+		document.getElementById('id_password').placeholder = 'Password';
+	</script>
+</body>
+</html>
