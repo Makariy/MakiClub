@@ -17,11 +17,9 @@ function loadBestMonth() {
 	$.get({
 		url: '/recipes/get/best_month'
 	}).done(function(data) {
-		
 		let recipes = data.recipes;
 		for (var i = 0; i < recipes.length; i+=1) {
-			let recipe = recipes[i];
-			console.log(recipe);
+			let recipe = recipes[i].recipe;
 			let itemHtml = `
 				<div class="recommendation__best_month_list_item">
 					<img src="static/img/most_popular1.jpg" class="recommendation__best_month_list_item-img">

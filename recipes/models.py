@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Recipe(models.Model):
-    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name='Author')
+    author = models.ForeignKey(User, null=True, blank=False, on_delete=models.CASCADE, verbose_name='Author')
 
     title = models.CharField(max_length=255, null=False, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
