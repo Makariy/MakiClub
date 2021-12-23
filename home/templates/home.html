@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<link rel="stylesheet" href="{% static '/css/style.css' %}">
+	<link rel="stylesheet" href="{% static '/css/home.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Roboto&family=Source+Sans+Pro&family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Caramel&family=Cookie&family=Fleur+De+Leah&family=Great+Vibes&family=Italianno&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static '/css/slick.css' %}">
+	
+</head>
+<body>
+
+	<section class="menu-section">
+		<div class="container">
+			<div class="menu">
+				
+				<div class="menu__logo">
+					<a href="{% url 'home' %}" class="menu__logo_logo">
+						Maki<span>Club</span>
+					</a>
+				</div>
+				<div class="menu__categories">
+					<ul class="menu__categories_list">
+						<li class="menu__categories_list_item">
+							<a href="#">Top</a>		
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Popular</a>
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Offers</a>
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Best</a>
+						</li>
+					</ul>
+				</div>
+				<div class="menu__search">
+					<button class="menu__search_input_button">
+						<img src="{% static 'img/search.svg' %}" alt="">
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<section class="recommendation-section">
+		<div class="container">
+			<div class="recommendation">
+				
+				<div class="recommendation__best_today" id="recommendation__best_today">
+					<div class="recommendation__best_today_image">
+						<img src="{% static 'img/presentation_cookie.webp' %}" alt="" class="recommendation__best_today_image-img">
+						<div class="recommendation__best_today_image_text">
+							<div class="recommendation__best_today_image_text_inner">
+								<h3 class="recommendation__best_today_image_text-title">
+									Sesame crisp cookies
+								</h3>
+								<p class="recommendation__best_today_image_text-description">
+									These thin, beautiful, sesame cookies are crispy, buttery, and studded with black sesame seeds.
+								</p>
+								<a href="#" class="recommendation__best_today_image_text-link">
+									Get the recipe > 
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="recommendation__best_month">
+					<div class="recommendation__best_month_logo">
+						Maki<span>Club</span>
+					</div>
+
+					<div class="recommendation__best_month_title">
+						The best recipes of this month >
+					</div>
+
+					<div class="recommendation__best_month_list">
+						<!--
+							This part will be added dynamically with ajax
+						-->
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>	
+
+	
+	<section class="footer-section">
+		<div class="container">
+			<div class="footer">
+
+				<div class="footer__links">
+					<ul class="footer__links_ul">
+						<li class="footer__links_ul_li">
+							<a href="#" class="footer__links_ul_li-link">
+								<img src="{% static 'img/instagram.svg' %}" alt="" class="footer__links_ul_li-link--img">
+							</a>
+						</li>
+						<li class="footer__links_ul_li">
+							<a href="#" class="footer__links_ul_li-link">
+								<img src="{% static 'img/youtube.svg' %}" alt="" class="footer__links_ul_li-link--img">
+							</a>
+						</li>
+						<li class="footer__links_ul_li">
+							<a href="#" class="footer__links_ul_li-link">
+								<img src="{% static 'img/vk.svg' %}" alt="" class="footer__links_ul_li-link--img">
+							</a>
+						</li>
+						<li class="footer__links_ul_li">
+							<a href="#" class="footer__links_ul_li-link">
+								<img src="{% static 'img/facebook.svg' %}" alt="" class="footer__links_ul_li-link--img">
+							</a>
+						</li>
+					</ul>
+				</div>	
+				<div class="footer__authors">
+					<div class="footer__authors_author">
+						<div class="footer__authors_author_title footer__authors_author_makariy">
+							Makariy Corp.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{% static '/js/slick.min.js' %}"></script>
+	<script src="{% static '/js/main.js' %}"></script>
+</html>

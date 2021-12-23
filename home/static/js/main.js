@@ -1,52 +1,49 @@
-$('.presentation__recipes_slider').slick({
-	dots: true,
-	arrows: false,
-
-});
-
-$('.presentation__popular_list').slick({
-	dots: true,
-	arrows: false,
-
-	slidesToShow: 5,
-	slidesToScroll: 2,
-});
 
 
-var result = 1;
+function loadBestToday() {
+	$.get({
+		url: '/recipes/get/best_today/'
+	}).done(function(data) {
+		let recipe = data.recipe;
+		let bestToday = document.getElementById('recommendation__best_today'); 
+		bestToday.getElementsByClassName('recommendation__best_today_image_text-title')[0].innerText = recipe.title;
+		bestToday.getElementsByClassName('recommendation__best_today_image_text-description')[0].innerText = recipe.description;
+		bestToday.getElementsByClassName('recommendation__best_today_image_text-link')[0].href = 'recipes/?id=' + recipe.id;
 
-function loadPresentation() {
-	$.get({url: 'get/presentation'}).done(function(response) {
-		var recipes = response.recipes;
-		for (var i = 0; i < recipes.length; i+=1) {
-			var element = document.createElement('div');
-			element.innerHTML = `
-			<div class="presentation__recipes_slider_item">
-				<img src="static/img/presentation-food.jpg" class="presentation__recipes_slider_item-image">
-				<div class="presentation__recipes_slider_item_text">
-					<h4 class="presentation__recipes_slider_item_text-title">${recipes[i].title}</h4>
-					<p class="presentation__recipes_slider_item_text-description">${recipes[i].description}</p>
-					<a href="${recipes[i].id}" class="presentation__recipes_slider_item_text-link">Checkout</a>
-				</div>
-			</div>
-			`;
-			result = $('.presentation__recipes_slider').slick('slickAdd', element);
-		}
 	});
 }
 
-function loadPopular() {
-	$.get({url: 'get/popular'}).done(function(response){
-		var popular = response.popular;
-
-		console.log(popular)
-	});
+function loadBestMonth() {
+	$.get({
+		url: '/recipes/get/best_month'
+	}).done(function(data) {
+		
+		let recipes = data.recipes;
+		for (var i = 0; i < recipes.length; i+=1) {
+			let recipe = recipes[i];
+			console.log(recipe);
+			let itemHtml = `
+				<div class="recommendation__best_month_list_item">
+					<img src="static/img/most_popular1.jpg" class="recommendation__best_month_list_item-img">
+					<div class="recommendation__best_month_list_item_text">	
+						<h4 class="recommendation__best_month_list_item_text-title">
+							${recipe.title}
+						</h4>
+						<p class="recommendation__best_month_list_item_text-description">
+							${recipe.description}
+						</p>
+					</div>
+				</div>
+			`;
+			$('.recommendation__best_month_list')[0].innerHTML += itemHtml;
+		}
+	});	
 }
 
 
 function loadElements() {
-	loadPresentation();
-	loadPopular();
+	loadBestToday();
+	loadBestMonth();
 }	
 
 

@@ -16,8 +16,9 @@ from .services.db_services import *
 
 
 def logout_view(request):
-    logout(request)
-    return JsonResponse({'status': 'success'})
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'fail'})
 
 
@@ -32,7 +33,7 @@ class LoginView(View):
         if user and not user.is_anonymous:
             return redirect(next_page)
 
-        return render(request, 'main/login.html')
+        return render(request, 'login.html')
 
     def post(self, request, *args, **kwargs):
         next_page = request.POST.get('next')
@@ -59,7 +60,7 @@ class RegistrationView(View):
         if user and not user.is_anonymous:
             return redirect(next_page)
 
-        return render(request, 'main/signup.html')
+        return render(request, 'signup.html')
 
     def post(self, request, *args, **kwargs):
         next_page = request.POST.get('next')
