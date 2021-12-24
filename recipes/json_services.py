@@ -40,6 +40,5 @@ def render_recipes(recipes: Tuple[Recipe], include_fields=None) -> Dict[str, Tup
     """Returns a dict with rendered recipes <recipes.models.Recipe>,
     if include_fields is an iterable sequence, includes the fields
     specified in it, else includes all the fields of the recipe"""
-    return {
-        'recipes': [render_recipe(recipe, include_fields) for recipe in recipes]
-    }
+    return [render_recipe(recipe, include_fields) for recipe in recipes]
+

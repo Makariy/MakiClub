@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,6 +86,13 @@ DATABASES = {
 }
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',  # Only on debug
+    }
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -127,3 +135,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CACHE_TIMEOUT_RECIPES_BEST_TODAY = os.environ.get('CACHE_TIMEOUT_RECIPES_BEST_TODAY') or 3600
+CACHE_TIMEOUT_RECIPES_BEST_MONTH = os.environ.get('CACHE_TIMEOUT_RECIPES_BEST_MONTH') or 3600 * 30
+CACHE_TIMEOUT_RECIPES_BEST_FEASTS = os.environ.get('CACHE_TIMEOUT_RECIPES_BEST_FEASTS') or 3600 * 3

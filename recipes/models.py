@@ -10,6 +10,9 @@ class Recipe(models.Model):
     title = models.CharField(max_length=255, null=False, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
 
+    views = models.IntegerField(null=False, default=0, verbose_name='Views count')
+    group = models.ForeignKey('RecipeGroup', null=True, on_delete=models.PROTECT, verbose_name='Group')
+
     image = models.FilePathField(verbose_name='Image file', null=False)
     recipe_file = models.FilePathField(verbose_name='Recipe file', null=False)
     _ingredients = models.TextField(verbose_name='Ingredients')
@@ -25,3 +28,11 @@ class Recipe(models.Model):
         self._ingredients = ';'.join(value)
 
     id = models.AutoField(primary_key=True, verbose_name='ID')
+
+
+class RecipeGroup(models.Model):
+    title = models.CharField(max_length=255, null=False, blank=False, verbose_name='Title')
+    views = models.IntegerField(null=False, default=0, verbose_name='Views count')
+
+    id = models.AutoField(primary_key=True, verbose_name='ID')
+
