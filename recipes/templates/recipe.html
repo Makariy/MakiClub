@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/recipe.css' %}">
+</head>
+<body>
+
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu">
+                
+                <div class="menu__logo">
+                    <a href="{% url 'home' %}" class="menu__logo_logo">
+                        Maki<span>Club</span>
+                    </a>
+                </div>
+                <div class="menu__categories">
+                    <ul class="menu__categories_list">
+                        <li class="menu__categories_list_item">
+                            <a href="#">Top</a>     
+                        </li>
+                        <li class="menu__categories_list_item">
+                            <a href="#">Popular</a>
+                        </li>
+                        <li class="menu__categories_list_item">
+                            <a href="#">Offers</a>
+                        </li>
+                        <li class="menu__categories_list_item">
+                            <a href="#">Best</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu__search">
+                    <button class="menu__search_input_button">
+                        <img src="{% static 'img/search.svg' %}" alt="">
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <h4 class="filter__title">
+                    Filtered with:
+                </h4>
+                <ul class="filter__list">
+                    {% for filter in filters %}
+                        <li class="filter__list_item">
+                            {{ filter.title }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="recipe_header-section">
+        <div class="container">
+            <div class="recipe_header">
+                <h3 class="recipe_header__title">
+                    {{ recipe.title }}
+                </h3>
+                <p class="recipe_header__description">
+                    {{ recipe.description }}
+                </p>
+                <div class="recipe__header__author">
+                    <img src="{% static 'img/chef#1.png' %}" alt="" class="recipe__header__author_image">
+                    <div class="recipe__header__author_text">
+                        <h4 class="recipe__header__author_text-title">
+                            By {{ recipe.author.username }}
+                        </h4>
+                        <p class="recipe__header__author_text-date">
+                            Published: {{ recipe.date }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="recipe_recipe-section">
+        <div class="container">
+            <div class="recipe_recipe">
+
+                <img src="{{ recipe.image }}" class="recipe_recipe-img">
+
+                <!--
+                    This part will be rendered dynamically with ajax
+                -->
+
+            </div>  
+        </div>
+    </section>
+
+
+    <section class="footer-section">
+        <div class="container">
+            <div class="footer">
+
+                <div class="footer__links">
+                    <ul class="footer__links_ul">
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/instagram.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/youtube.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/vk.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/facebook.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>  
+                <div class="footer__authors">
+                    <div class="footer__authors_author">
+                        <div class="footer__authors_author_title footer__authors_author_makariy">
+                            Makariy Corp.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+    <script>document.recipe_id = {{ recipe.id }}</script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/recipe.js' %}"></script>
+</html>

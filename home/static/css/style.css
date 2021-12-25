@@ -37,3 +37,134 @@ li {
 }
 
 
+
+
+/*
+
+------------------------------------------------------------
+
+							MENU
+
+------------------------------------------------------------
+
+*/
+.menu {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 2px solid #f0e965;
+	font-family: 'Roboto', sans-serif;
+	padding: 17px 30px;
+}
+
+.menu__logo {
+	font-size: 24px;
+    font-weight: 700;
+}
+.menu__logo span {
+	background-color: #fffdd0;
+	border-radius: 25%;
+	padding: 10px 0;
+}
+
+.menu__categories_list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.menu__categories_list_item {
+	margin-left: 15px;
+}
+.menu__categories_list_item:fisrt-child {
+	margin-left: 0;
+}
+
+.menu__search {
+	display: flex;
+	align-items: center;
+}
+#menu__search_input {
+	padding: 3px 5px;
+	border-radius: 5px;
+	outline: none;
+	border: 2px solid  #d7d7d7;
+}
+.menu__search_input_button {
+	border: none;
+	background-color: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+    height: 30px;
+    width: 30px;
+	margin-left: 5px;
+}
+.menu__search_input_button img {
+	height: 100%;
+}
+
+/*
+
+------------------------------------------------------------
+
+							END MENU
+
+------------------------------------------------------------
+
+*/
+
+
+
+
+/*
+
+------------------------------------------------------------
+		
+							FOOTER
+
+------------------------------------------------------------
+
+*/
+.footer-section {
+	margin-top: 10px;
+}
+.footer {
+ 	padding: 50px 0;
+ 	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.footer__links_ul {
+	display: flex;
+}
+.footer__links_ul_li {
+	margin-left: 25px;
+}
+.footer__links_ul_li:first-child {
+	margin-left: 0;
+}
+
+
+.footer__authors {
+	margin-top: 20px;
+}
+.footer__authors_author_makariy {
+	font-size: 27px;
+	font-family: 'Fleur De Leah', cursive;
+}
+
+/*
+
+------------------------------------------------------------
+		
+							END FOOTER
+
+------------------------------------------------------------
+
+*/
+
+
+
+

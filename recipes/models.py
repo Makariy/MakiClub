@@ -11,7 +11,7 @@ class Recipe(models.Model):
     description = models.TextField(verbose_name='Description')
 
     views = models.IntegerField(null=False, default=0, verbose_name='Views count')
-    group = models.ForeignKey('RecipeGroup', null=True, on_delete=models.PROTECT, verbose_name='Group')
+    groups = models.ManyToManyField('RecipeGroup', null=True, verbose_name='Group')
 
     image = models.FilePathField(verbose_name='Image file', null=False)
     recipe_file = models.FilePathField(verbose_name='Recipe file', null=False)
