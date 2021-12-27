@@ -1,6 +1,6 @@
 function renderRecipe(recipe) {
 	return `
-		<div class="recipe__item">
+		<a href="/recipes/recipe/?recipe_uuid=${recipe.uuid}" class="recipe__item">
 			<img src="static/img/most_popular1.jpg" class="recipe__item-img">
 			<div class="recipe__item_text">	
 				<h4 class="recipe__item_text-title">
@@ -10,7 +10,7 @@ function renderRecipe(recipe) {
 					${recipe.description}
 				</p>
 			</div>
-		</div>
+		</a>
 	`;
 }
 

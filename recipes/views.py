@@ -11,6 +11,7 @@ from .json_services import *
 
 import json
 
+
 # Create your views here.
 
 
@@ -19,11 +20,18 @@ CACHE_TIMEOUT_RECIPES_BEST_MONTH = settings.CACHE_TIMEOUT_RECIPES_BEST_MONTH
 CACHE_TIMEOUT_RECIPES_BEST_FEASTS = settings.CACHE_TIMEOUT_RECIPES_BEST_FEASTS
 
 
+class RecipeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'recipe.html')
+
+
 def ajax_get_recipe_best_today(request):
     rendered = cache.get(f'{__name__}_best_today')
     if not rendered:
         recipes = get_best_recipes_by_start_date(datetime.now(), count=1)
-        rendered = render_recipe(recipes[0], include_fields=['title', 'description', 'id']) if recipes else {}
+        rendered = {
+            'recipe': render_recipe(recipes[0], include_fields=['title', 'description', 'uuid']) if recipes else {}
+        }
         cache.set(f'{__name__}_best_today', rendered, CACHE_TIMEOUT_RECIPES_BEST_TODAY)
 
     return JsonResponse(rendered)
@@ -34,7 +42,7 @@ def ajax_get_recipe_best_month(request):
     if not rendered:
         recipes = get_best_recipes_by_start_date(datetime.now() - timedelta(days=30), count=2)
         rendered = {
-            'recipes': render_recipes(recipes, include_fields=['title', 'description', 'id'])
+            'recipes': render_recipes(recipes, include_fields=['title', 'description', 'uuid'])
         }
 
         cache.set(f'{__name__}_best_month', rendered, CACHE_TIMEOUT_RECIPES_BEST_MONTH)
@@ -46,7 +54,7 @@ def ajax_get_best_feasts(request):
     if not rendered:
         recipes = get_best_recipes_by_start_date(datetime.now() - timedelta(days=30), count=3)
         rendered = {
-            'recipes': render_recipes(recipes, include_fields=['title', 'description', 'id'])
+            'recipes': render_recipes(recipes, include_fields=['title', 'description', 'uuid'])
         }
         cache.set(f'{__name__}_best_feasts', rendered, CACHE_TIMEOUT_RECIPES_BEST_FEASTS)
     return JsonResponse(rendered)
@@ -58,7 +66,7 @@ def ajax_get_groups(request):
         rendered = {
             'groups': []
         }
-        best_groups = order_recipe_groups_by_params('-views')
+        best_groups = order_recipe_groups_by_params('-id', 3)
         for group in best_groups:
             recipes = get_best_recipes_by_start_date(datetime.now(), count=3, groups=group)
             rendered['groups'].append({
@@ -71,27 +79,26 @@ def ajax_get_groups(request):
 
 
 def ajax_get_recipe_data(request):
-    recipe_id = request.GET.get('recipe_id')
-    if recipe_id and recipe_id.isdigit():
-        recipe = get_recipe_by_params(id=recipe_id)
-        file = open(f'data/{recipe.recipe_file}', 'r')
+    recipe_uuid = convert_string_to_uuid(request.GET.get('recipe_uuid'))
+    if recipe_uuid:
+        recipe = get_recipe_by_params(uuid=recipe_uuid)
+        recipe_file = open(f'data/{recipe.recipe_file}', 'r')
+        return JsonResponse(json.loads(recipe_file.read()))
+    return HttpResponseBadRequest()
+
+
+def ajax_get_recipe(request):
+    recipe_uuid = convert_string_to_uuid(request.GET.get('recipe_uuid'))
+    if recipe_uuid:
+        recipe = get_recipe_by_params(uuid=recipe_uuid)
+
         return JsonResponse({
-            'status': 'success',
-            'data': json.loads(file.read())
+            'recipe': render_recipe(recipe),
+            'status': 'success'
         })
+
     return JsonResponse({
         'status': 'fail'
     })
 
-
-class RecipeView(View):
-    def get(self, request, *args, **kwargs):
-        recipe_id = request.GET.get('recipe_id')
-        if recipe_id and recipe_id.isdigit():
-            recipe = get_recipe_by_params(id=recipe_id)
-            return render(request, 'recipe.html', context={
-                'filters': recipe.groups.all(),
-                'recipe': recipe
-            })
-        return HttpResponseBadRequest()
 

@@ -1,44 +1,35 @@
 from .models import Recipe  # type: Ignore
-from typing import Tuple, Dict  # type: Ignore
+from typing import Dict, List, Union
 from django.db import models
 
 
-def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Dict[str, Recipe]]:
+def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Union[str, List[str]]]:
     """Returns a dict with rendered recipe <recipes.models.Recipe>,
     if include_fields is an iterable sequence, include only the fields
     specified in it, else includes all the fields of the recipe"""
-    if include_fields is None:
-        result = {
-            'recipe': {
-                'title': recipe.title,
-                'author': recipe.author.username,
-                'author_id': recipe.author.id,
-                'image_file': recipe.image,
-                'ingredients': recipe.ingredients,
-                'date': recipe.date,
-                'description': recipe.description,
-                'id': recipe.id
-            }
-        }
-    else:
-        recipe_result = {}
-        for field in include_fields:
-            if '__' in field:
-                tree = field.split('__')
-                cls = recipe
-                for obj in tree:
-                    cls = getattr(cls, obj)
-                recipe_result[field] = cls
-            else:
-                recipe_result[field] = getattr(recipe, field)
-        result = {'recipe': recipe_result}
+    result = {
+        'title': recipe.title,
+        'author': recipe.author.username,
+        'author_id': recipe.author.id,
+        'image_link': recipe.image_file,
+        'ingredients': recipe.ingredients,
+        'date': recipe.date,
+        'description': recipe.description,
+        'groups': [group.title for group in recipe.groups.all()],
+        'uuid': recipe.uuid
+    }
+
+    if include_fields is not None:
+        for field in list(result.keys()):
+            if field not in include_fields:
+                result.pop(field)
 
     return result
 
 
-def render_recipes(recipes: Tuple[Recipe], include_fields=None) -> Dict[str, Tuple[Dict[str, Recipe]]]:
+def render_recipes(recipes: List[Recipe], include_fields=None) -> List[Dict[str, Dict[str, str]]]:
     """Returns a dict with rendered recipes <recipes.models.Recipe>,
     if include_fields is an iterable sequence, includes the fields
     specified in it, else includes all the fields of the recipe"""
-    return [render_recipe(recipe, include_fields) for recipe in recipes]
+    return [{'recipe': render_recipe(recipe, include_fields)} for recipe in recipes]
 
