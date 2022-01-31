@@ -1,13 +1,24 @@
 function renderRecipe(recipe) {
+    let title = recipe.title;
+    let description = recipe.description;
+
+    let max_title_length = 25;
+    let max_description_length = 55;
+    if (title.length > max_title_length) {
+        title = title.substr(0, max_title_length) + '...';
+    }
+    if (description.length > max_description_length) {
+        description = description.substr(0, max_description_length) + '...';
+    }
 	return `
 		<a href="/recipes/recipe/?recipe_uuid=${recipe.uuid}" class="recipe__item">
 			<img src="static/img/most_popular1.jpg" class="recipe__item-img">
 			<div class="recipe__item_text">	
 				<h4 class="recipe__item_text-title">
-					${recipe.title}
+					${title}
 				</h4>
 				<p class="recipe__item_text-description">
-					${recipe.description}
+					${description}
 				</p>
 			</div>
 		</a>
@@ -16,7 +27,7 @@ function renderRecipe(recipe) {
 
 
 function renderGroup(group) {
-	let recipes = group.recipes;
+	let recipes = group.recipes.recipes;
 	let renderedRecipes = '';
 	for (var i = 0; i < recipes.length; i+=1) {
 		renderedRecipes += renderRecipe(recipes[i].recipe);

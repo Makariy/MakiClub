@@ -21,7 +21,7 @@
 
 .recipe__item {
 	position: relative;
-	height: 22rem;
+	height: 26rem;
 	width: 18rem;
 	transition: 0.2s;
 	border: none;
@@ -44,11 +44,14 @@
 }
 
 .recipe__item-img {
-	height: 50%;
+	height: 45%;
 	width: 100%;
 }
 .recipe__item_text {
 	padding: 20px;
+	word-wrap    : break-word;
+    overflow-wrap: break-word;
+
 }
 .recipe__item_text-title {
 	font-size: 26px;
@@ -176,8 +179,8 @@
 	justify-content: space-around;
 }
 .recommendation__best_month_list .recipe__item {
-	height: 20rem;
-	width: 16rem;	
+	height: 24rem;
+	width: 16rem;
 }
 
 

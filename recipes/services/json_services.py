@@ -1,4 +1,4 @@
-from .models import Recipe  # type: Ignore
+from recipes.models import Recipe  # type: Ignore
 from typing import Dict, List, Union
 from django.db import models
 
@@ -27,9 +27,10 @@ def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Union[str, L
     return result
 
 
-def render_recipes(recipes: List[Recipe], include_fields=None) -> List[Dict[str, Dict[str, str]]]:
+def render_recipes(recipes: List[Recipe], include_fields=None) -> Dict[str, List[Dict[str, Dict[str, str]]]]:
     """Returns a dict with rendered recipes <recipes.models.Recipe>,
     if include_fields is an iterable sequence, includes the fields
     specified in it, else includes all the fields of the recipe"""
-    return [{'recipe': render_recipe(recipe, include_fields)} for recipe in recipes]
-
+    return {
+        'recipes': [{'recipe': render_recipe(recipe, include_fields)} for recipe in recipes]
+    }
