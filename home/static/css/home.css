@@ -21,8 +21,8 @@
 
 .recipe__item {
 	position: relative;
-	height: 26rem;
-	width: 18rem;
+	height: 350px;
+    width: 275px;
 	transition: 0.2s;
 	border: none;
 	background-color: #fff;
@@ -172,17 +172,18 @@
 }
 .recommendation__best_month_list {
 	margin-top: 25px;
-
 	width: 90%;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 20px;
 }
 .recommendation__best_month_list .recipe__item {
-	height: 24rem;
-	width: 16rem;
+	height: 350px;
+    width: 275px;
 }
-
 
 /*
 ------------------------------------------------------------
@@ -222,9 +223,9 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-
+    flex-wrap: wrap;
+    gap: 40px;
 }
-
 
 /*
 ------------------------------------------------------------
@@ -252,7 +253,7 @@
 }
 .chefs__text {
 	height: 100%;
-    width: 40%;
+    width: 40%;  /* Just for some time */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -373,5 +374,54 @@
 */
 
 
+@media(max-width: 1440px) {
+    .recommendation {
+        flex-direction: column;
+        align-items: center;
+    }
+    .recommendation__best_today {
+        width: 100%;
+    }
+    .recommendation__best_month {
+        width: 100%;
+    }
+    .chefs {
+        height: auto;
+        flex-direction: column;
+    }
+    .chefs__chefs {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width: 1240px) {
+    .chefs__text {
+        width: 60%;
+    }
+    .chefs__chefs {
+        width: 60%;
+    }
+}
+
+@media(max-width: 540px) {
+    .recommendation__best_today_image_text {
+        width: 85%;
+    }
+    .chefs__text {
+        width: 80%;
+    }
+    .chefs__chefs {
+        width: 80%;
+    }
+}
 
 
+@media(max-width: 450px) {
+    .recommendation__best_today_image_text-title {
+        font-size: 22px;
+    }
+    .recommendation__best_today_image_text-description {
+        font-size: 14px;
+        margin: 5px;
+    }
+}
