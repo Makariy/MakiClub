@@ -57,7 +57,7 @@ function renderRecipe(recipe) {
     document.getElementById('recipe__date').innerHTML += recipe.date;
 
     // Add recipe image
-    document.getElementById('recipe__image').src = recipe.image_link;
+    document.getElementById('recipe__image').src = '/recipes/img/' + recipe.image_link;
 }
 
 function loadRecipe() {
