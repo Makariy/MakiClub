@@ -1,5 +1,8 @@
 from django.urls import path
 
+
+from .views import recipe_image_view
+
 from .views import ajax_get_recipe_best_month
 from .views import ajax_get_recipe_best_today
 from .views import ajax_get_best_feasts
@@ -17,6 +20,8 @@ urlpatterns = [
     path('get/groups/', ajax_get_groups, name='get_groups'),
     path('get/recipe/', ajax_get_recipe, name='get_recipe'),
     path('get/recipe_data/', ajax_get_recipe_data, name='get_recipe_data'),
+
+    path('img/<slug:image_file>', recipe_image_view, name='recipe_image'),
 
     path('recipe/', RecipeView.as_view(), name='recipe')
 ]

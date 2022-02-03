@@ -12,7 +12,7 @@ function renderRecipe(recipe) {
     }
 	return `
 		<a href="/recipes/recipe/?recipe_uuid=${recipe.uuid}" class="recipe__item">
-			<img src="static/img/most_popular1.jpg" class="recipe__item-img">
+			<img src="/recipes/img/${recipe.image_link}" class="recipe__item-img">
 			<div class="recipe__item_text">	
 				<h4 class="recipe__item_text-title">
 					${title}

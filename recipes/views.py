@@ -1,8 +1,9 @@
 from datetime import timedelta
+import os
 
 from django.shortcuts import render
 from django.views.generic import View
-from django.http.response import JsonResponse, HttpResponseBadRequest
+from django.http.response import JsonResponse, HttpResponseBadRequest, FileResponse
 from django.core.cache import cache
 from django.conf import settings
 
@@ -19,6 +20,15 @@ CACHE_TIMEOUT_RECIPES_BEST_FEASTS = settings.CACHE_TIMEOUT_RECIPES_BEST_FEASTS
 class RecipeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'recipe.html')
+
+
+# Just for some time
+def recipe_image_view(request, image_file):
+    path = f'data/previews/{image_file}'
+    if os.path.exists(path):
+        return FileResponse(open(path, 'rb'), content_type='image/png')
+    else:
+        return HttpResponseBadRequest()
 
 
 def ajax_get_recipe_best_today(request):
