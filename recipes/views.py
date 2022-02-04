@@ -1,10 +1,8 @@
-from datetime import timedelta
 import os
 
 from django.shortcuts import render
 from django.views.generic import View
 from django.http.response import JsonResponse, HttpResponseBadRequest, FileResponse
-from django.core.cache import cache
 from django.conf import settings
 
 from .services.db_services import *
@@ -12,9 +10,9 @@ from .services.remote_services import get_recipe_data
 from .services.json_services import *
 from .services.cache_services import *
 
-CACHE_TIMEOUT_RECIPES_BEST_TODAY = settings.CACHE_TIMEOUT_RECIPES_BEST_TODAY
-CACHE_TIMEOUT_RECIPES_BEST_MONTH = settings.CACHE_TIMEOUT_RECIPES_BEST_MONTH
-CACHE_TIMEOUT_RECIPES_BEST_FEASTS = settings.CACHE_TIMEOUT_RECIPES_BEST_FEASTS
+CACHE_TIMEOUT_RECIPES_BEST_TODAY = settings.CACHE_TIMEOUT_RECIPES_BEST_TODAY or 3600
+CACHE_TIMEOUT_RECIPES_BEST_MONTH = settings.CACHE_TIMEOUT_RECIPES_BEST_MONTH or 3600 * 30
+CACHE_TIMEOUT_RECIPES_BEST_FEASTS = settings.CACHE_TIMEOUT_RECIPES_BEST_FEASTS or 3600 * 3
 
 
 class RecipeView(View):
@@ -26,7 +24,12 @@ class RecipeView(View):
 def recipe_image_view(request, image_file):
     path = f'data/previews/{image_file}'
     if os.path.exists(path):
-        return FileResponse(open(path, 'rb'), content_type='image/png')
+        headers = {
+            'Cache-Control': 'max-age=36000'
+        }
+        return FileResponse(open(path, 'rb'),
+                            content_type='image/png',
+                            headers=headers)
     else:
         return HttpResponseBadRequest()
 
