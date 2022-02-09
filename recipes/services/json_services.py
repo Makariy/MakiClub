@@ -3,7 +3,7 @@ from typing import Dict, List, Union
 from django.db import models
 
 
-def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Union[str, List[str]]]:
+def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Dict[str, Union[str, List[str]]]]:
     """Returns a dict with rendered recipe <recipes.models.Recipe>,
     if include_fields is an iterable sequence, include only the fields
     specified in it, else includes all the fields of the recipe"""
@@ -24,13 +24,15 @@ def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Union[str, L
             if field not in include_fields:
                 result.pop(field)
 
-    return result
+    return {
+        'recipe': result
+    }
 
 
-def render_recipes(recipes: List[Recipe], include_fields=None) -> Dict[str, List[Dict[str, Dict[str, str]]]]:
+def render_recipes(recipes: List[Recipe], include_fields=None) -> Dict[str, List[Dict[str, Dict[str, Union[str, List[str]]]]]]:
     """Returns a dict with rendered recipes <recipes.models.Recipe>,
     if include_fields is an iterable sequence, includes the fields
     specified in it, else includes all the fields of the recipe"""
     return {
-        'recipes': [{'recipe': render_recipe(recipe, include_fields)} for recipe in recipes]
+        'recipes': [render_recipe(recipe, include_fields) for recipe in recipes]
     }

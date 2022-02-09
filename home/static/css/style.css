@@ -60,6 +60,10 @@ li {
 .menu__logo {
 	font-size: 24px;
     font-weight: 700;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .menu__logo span {
 	background-color: #fffdd0;
@@ -75,7 +79,7 @@ li {
 .menu__categories_list_item {
 	margin-left: 15px;
 }
-.menu__categories_list_item:fisrt-child {
+.menu__categories_list_item:first-child {
 	margin-left: 0;
 }
 
@@ -102,6 +106,44 @@ li {
 }
 .menu__search_input_button img {
 	height: 100%;
+}
+
+
+.mobile-top-section {
+    display: none;
+}
+.mobile-top__button {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.menu__hide {
+	display: none;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	height: 30px;
+	width: 30px;
+}
+.menu__hide_button {
+	height: 100%;
+	width: 100%;
+	padding: 5px 0;
+	border-radius: 10%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+
+	background-color: transparent;
+	outline: none;
+	border: 1px solid #000;
+}
+.menu__hide_button-stick {
+	width: 80%;
+	height: 3px;
+	background-color: #000;
 }
 
 /*
@@ -164,6 +206,66 @@ li {
 ------------------------------------------------------------
 
 */
+
+
+@media(max-width: 500px) {
+    .menu-section {
+		position: absolute;
+		left: -100%;
+		transition: 0.3s;
+		z-index: 10;
+
+		height: 100vh;
+		width: 100vw;
+
+		background-color: #fff;
+		margin-top: 0
+	}
+	.menu-section.active {
+		left: 0;
+	}
+	.mobile-top-section {
+		display: block;
+		padding: 10px;
+	}
+	.menu__hide {
+		display: block;
+	}
+
+
+    .menu-section .container {
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+    }
+	.menu {
+		flex-direction: column;
+		margin-top: 5%;
+
+		height: 80%;
+		width: 60%;
+	}
+	.menu__logo_logo {
+		font-size: 40px;
+	}
+	.menu__categories {
+		margin-top: 40px;
+    }
+	.menu__categories_list {
+		flex-direction: column;
+	}
+	.menu__categories_list_item {
+		margin-left: 0;
+		font-size: 24px;
+		margin-top: 16px;
+	}
+	.menu__categories_list_item:first-child {
+		margin-top: 0;
+	}
+	.menu__search {
+	    margin-top: 40px;
+	}
+}
 
 
 

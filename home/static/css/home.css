@@ -21,7 +21,7 @@
 
 .recipe__item {
 	position: relative;
-	height: 350px;
+	height: 400px;
     width: 275px;
 	transition: 0.2s;
 	border: none;
@@ -181,10 +181,6 @@
     flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 20px;
-}
-.recommendation__best_month_list .recipe__item {
-	height: 350px;
-    width: 275px;
 }
 
 /*
@@ -427,3 +423,6 @@
         margin: 5px;
     }
 }
+
+
+

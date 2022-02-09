@@ -67,9 +67,8 @@ def ajax_get_recipe(request):
     recipe_uuid = convert_string_to_uuid(request.GET.get('recipe_uuid'))
     if recipe_uuid:
         recipe = get_recipe_by_params(uuid=recipe_uuid)
-
         return JsonResponse({
-            'recipe': render_recipe(recipe),
+            **render_recipe(recipe),
             'status': 'success'
         })
 
