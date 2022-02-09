@@ -57,7 +57,7 @@ function loadBestToday() {
 		let bestToday = document.getElementById('recommendation__best_today'); 
 		bestToday.getElementsByClassName('recommendation__best_today_image_text-title')[0].innerText = recipe.title;
 		bestToday.getElementsByClassName('recommendation__best_today_image_text-description')[0].innerText = recipe.description;
-		bestToday.getElementsByClassName('recommendation__best_today_image_text-link')[0].href = 'recipes/?id=' + recipe.id;
+		bestToday.getElementsByClassName('recommendation__best_today_image_text-link')[0].href = `/recipes/recipe/?recipe_uuid=${recipe.uuid}`;
 
 	});
 }
