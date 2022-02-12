@@ -1,6 +1,26 @@
-from recipes.models import Recipe  # type: Ignore
+from recipes.models import Recipe, RecipeGroup  # type: Ignore
 from typing import Dict, List, Union
-from django.db import models
+
+
+def render_recipe_group(group: RecipeGroup, include_fields=None) -> Dict[str, Dict[str, Union[str, List[str]]]]:
+    result = {
+        'title': group.title,
+        'uuid': group.uuid
+    }
+    if include_fields is not None:
+        for field in list(result.keys()):
+            if field not in include_fields:
+                result.pop(field)
+
+    return {
+        'group': result
+    }
+
+
+def render_recipe_groups(groups: List[RecipeGroup], include_fields=None) -> Dict[str, List[Dict[str, Dict[str, Union[str, List[str]]]]]]:
+    return {
+        'groups': [render_recipe_group(group, include_fields=include_fields) for group in groups]
+    }
 
 
 def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Dict[str, Union[str, List[str]]]]:
@@ -15,7 +35,7 @@ def render_recipe(recipe: Recipe, include_fields=None) -> Dict[str, Dict[str, Un
         'ingredients': recipe.ingredients,
         'date': recipe.date,
         'description': recipe.description,
-        'groups': [group.title for group in recipe.groups.all()],
+        'groups': [render_recipe_group(group) for group in recipe.groups.all()],
         'uuid': recipe.uuid
     }
 
@@ -34,5 +54,5 @@ def render_recipes(recipes: List[Recipe], include_fields=None) -> Dict[str, List
     if include_fields is an iterable sequence, includes the fields
     specified in it, else includes all the fields of the recipe"""
     return {
-        'recipes': [render_recipe(recipe, include_fields) for recipe in recipes]
+        'recipes': [render_recipe(recipe, include_fields=include_fields) for recipe in recipes]
     }

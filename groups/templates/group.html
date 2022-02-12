@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static '/css/style.css' %}">
+	<link rel="stylesheet" href="{% static '/css/group.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Roboto&family=Source+Sans+Pro&family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static '/css/slick.css' %}">
+</head>
+<body>
+    <section class="menu-section">
+		<div class="container">
+			<div class="menu">
+
+				<div class="menu__logo">
+					<a href="{% url 'home' %}" class="menu__logo_logo">
+						Maki<span>Club</span>
+					</a>
+				</div>
+				<div class="menu__categories">
+					<ul class="menu__categories_list">
+						<li class="menu__categories_list_item">
+							<a href="#">Top</a>
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Popular</a>
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Offers</a>
+						</li>
+						<li class="menu__categories_list_item">
+							<a href="#">Best</a>
+						</li>
+					</ul>
+				</div>
+				<div class="menu__search">
+					<button class="menu__search_input_button">
+						<img src="{% static 'img/search.svg' %}" alt="">
+					</button>
+				</div>
+
+
+				<div class="menu__hide">
+					<button onclick="menu_top_clicked()" class="menu__hide_button">
+						<div class="menu__hide_button-stick"></div>
+						<div class="menu__hide_button-stick"></div>
+						<div class="menu__hide_button-stick"></div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="mobile-top-section">
+		<div class="container">
+			<div class="mobile-top">
+
+				<div class="menu__hide">
+					<button onclick="menu_top_clicked()" class="menu__hide_button">
+						<div class="menu__hide_button-stick"></div>
+						<div class="menu__hide_button-stick"></div>
+						<div class="menu__hide_button-stick"></div>
+					</button>
+				</div>
+
+				<div class="menu__logo">
+					<a href="/" class="menu__logo_logo">
+						Maki<span>Club</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<section class="group-section">
+		<div class="container">
+			<div class="group">
+				<div class="group__text">
+					<h2 class="group__text-title">
+						<!-- Loading with ajax...-->
+					</h2>
+					<p class="group__text-description">
+						<!-- Loading with ajax...-->
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="filters-section">
+		<div class="container">
+			<div class="filters">
+
+				<div class="filters__title">
+					<h4 class="filters__title-title">
+						Filters:
+					</h4>
+				</div>
+				<ul class="filters__filters">
+					<li class="filters__filters_item active" id="filter-all">
+						<p class="filters__filters_item-text">
+							All
+						</p>
+					</li>
+					<li class="filters__filters_item" id="filter-title">
+						<p class="filters__filters_item-text">
+							Title
+						</p>
+					</li>
+					<li class="filters__filters_item" id="filter-popularity">
+						<p class="filters__filters_item-text">
+							Popularity
+						</p>
+					</li>
+					<li class="filters__filters_item" id="filter-recent">
+						<p class="filters__filters_item-text">
+							Recent
+						</p>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</section>
+
+
+	<section class="recipes-section">
+		<div class="container">
+			<div class="recipes">
+				<div class="recipes__inner">
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{% static '/js/slick.min.js' %}"></script>
+	<script src="{% static '/js/group.js' %}"></script>
+	<script>
+		function menu_top_clicked() {
+			var menu = $('.menu-section');
+			if (menu.hasClass('active')){
+				$('body')[0].style['overflow-y'] = 'scroll';
+				menu.removeClass('active');
+			}
+			else {
+				$('body')[0].style['overflow-y'] = 'hidden';
+				menu.addClass('active');
+			}
+		}
+	</script>
+</html>

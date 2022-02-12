@@ -52,16 +52,11 @@ def get_or_set_recipe_groups() -> Dict[str, List[Dict[str, str]]]:
 
     rendered = cache.get(cache_name)
     if not rendered:
-        rendered = {
-            'groups': []
-        }
         best_groups = order_recipe_groups_by_params('-id', 3)
-        for group in best_groups:
-            recipes = get_best_recipes_by_start_date(datetime.now(), count=3, groups=group)
-            rendered['groups'].append({
-                'title': group.title,
-                'recipes': render_recipes(recipes, include_fields=AJAX_RECIPE_INCLUDE_FIELDS)
-            })
+        rendered = render_recipe_groups(best_groups)
+        for i in range(len(best_groups)):
+            recipes = get_best_recipes_by_start_date(datetime.now(), count=3, groups=best_groups[i])
+            rendered['groups'][i]['recipes'] = render_recipes(recipes, include_fields=AJAX_RECIPE_INCLUDE_FIELDS)
 
         cache.set(cache_name, rendered, CACHE_TIMEOUT_RECIPES_BEST_FEASTS)
     return rendered

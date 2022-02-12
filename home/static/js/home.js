@@ -34,11 +34,11 @@ function renderGroup(group) {
 	}
 	return `
 		<div class="groups__group">
-			<div class="groups__group_title">
+			<a class="groups__group_title" href="/groups/group/?group_uuid=${group.group.uuid}">
 				<h3 class="groups__group_title-title">
-					${group.title}
+					${group.group.title}
 				</h3>
-			</div>
+			</a>
 			<div class="groups__group_recipes">
 				${renderedRecipes}
 			</div>
@@ -62,17 +62,15 @@ function loadBestToday() {
 	});
 }
 
+a = null;
 function loadBestMonth() {
 	$.get({
 		url: '/recipes/get/best_month'
 	}).done(function(data) {
-		let recipes = data.recipes;
-		for (var i = 0; i < recipes.length; i+=1) {
-			let recipe = recipes[i].recipe;
-			let rendered = renderRecipe(recipe);
-			$('.recommendation__best_month_list')[0].innerHTML += rendered;
-		}
-	});	
+		data.recipes.forEach(function(elem) {
+		    $('.recommendation__best_month_list')[0].innerHTML += renderRecipe(elem.recipe);
+		});
+	});
 }
 
 
@@ -80,24 +78,19 @@ function loadFeasts() {
 	$.get({
 		url: '/recipes/get/best_feasts/'
 	}).done(function(data) {
-		let recipes = data.recipes;
-		for (var i = 0; i < recipes.length; i+=1) {
-			let recipe = recipes[i].recipe;
-			let rendered = renderRecipe(recipe);
-			$('.feasts__list')[0].innerHTML += rendered;
-		}
-	});	
+		data.recipes.forEach(function(elem) {
+			$('.feasts__list')[0].innerHTML += renderRecipe(elem.recipe);
+		});
+	});
 }
-
 
 function loadGroups() {
 	$.get({
-		url: '/recipes/get/groups'
+		url: '/recipes/get/groups/'
 	}).done(function(data) {
-		let groups = data.groups;
-		for (var i = 0; i < groups.length; i+=1) {
-			$('.groups')[0].innerHTML += renderGroup(groups[i]);
-		}
+        data.groups.forEach(function(elem) {
+            $('.groups')[0].innerHTML += renderGroup(elem);
+        });
 	});
 }
 

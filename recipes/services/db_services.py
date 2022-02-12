@@ -1,17 +1,8 @@
-from typing import Union
+from typing import Union, Optional
 
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
 from recipes.models import Recipe, RecipeGroup
-from uuid import UUID
-
-
-def convert_string_to_uuid(uuid: str) -> UUID:
-    """Converts uuid of type str to UUID. If param is not valid, returns None"""
-    try:
-        return UUID(uuid)
-    except ValueError:
-        return None
 
 
 def get_recipe_by_params(**params) -> Union[Recipe, None]:
@@ -32,13 +23,17 @@ def get_recipe_group_by_params(**params):
 
 def get_best_recipes_by_start_date(date: datetime, groups=None, count=10):
     """Returns the best recipes for the specified date with groups <groups>, if there is no recipes for that date,
-    returns the best recipes for the most closest date before."""
+    returns the best recipes for the closest date before."""
     recipes = Recipe.objects.filter(date__gt=date).order_by('-id')
-    if not recipes:
-        recipes = Recipe.objects.order_by('-id')
 
     if groups is not None:
-        recipes = recipes.filter(groups=groups)
+        if hasattr(groups, '__iter__'):
+            recipes = recipes.filter(groups__in=groups)
+        else:
+            recipes = recipes.filter(groups=groups)
+
+    if not recipes:
+        recipes = Recipe.objects.order_by('-id')
 
     return recipes[:count]
 
@@ -46,5 +41,11 @@ def get_best_recipes_by_start_date(date: datetime, groups=None, count=10):
 def order_recipe_groups_by_params(ordering, count=3):
     """Returns an ordered QuerySet with recipes groups"""
     return RecipeGroup.objects.order_by(ordering)[:count]
+
+
+def get_recipes_by_group(group: RecipeGroup, count=10, date: Optional[datetime]=None):
+    """Returns recipes that match the specified group with a limit of count and starting from date <date>"""
+    date = date if date else datetime.now()
+    return get_best_recipes_by_start_date(date, groups=[group], count=count)
 
 

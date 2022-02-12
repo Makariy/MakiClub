@@ -3,12 +3,11 @@ import os
 from django.shortcuts import render
 from django.views.generic import View
 from django.http.response import JsonResponse, HttpResponseBadRequest, FileResponse
-from django.conf import settings
 
-from .services.db_services import *
 from .services.remote_services import get_recipe_data
-from .services.json_services import *
 from .services.cache_services import *
+
+from lib.utils.type_converter import convert_string_to_uuid
 
 CACHE_TIMEOUT_RECIPES_BEST_TODAY = settings.CACHE_TIMEOUT_RECIPES_BEST_TODAY or 3600
 CACHE_TIMEOUT_RECIPES_BEST_MONTH = settings.CACHE_TIMEOUT_RECIPES_BEST_MONTH or 3600 * 30

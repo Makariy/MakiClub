@@ -14,7 +14,9 @@ function getGetParameter(parameterName) {
 function renderFilter(filter) {
     return `
         <li class="filter__list_item">
-            ${filter}
+            <a class="filter__list_item-link" href="/groups/group/?group_uuid=${filter.uuid}">
+                ${filter.title}
+            </a>
         </li>
     `;
 }    
@@ -33,16 +35,17 @@ function renderRecipeDataElement(recipe_data) {
 }
 
 function renderRecipeData(recipe_data) {
-    for (var i = 0; i < recipe_data.length; i+=1) {
-       let rendered_recipe_data_element = renderRecipeDataElement(recipe_data[i]);
+    recipe_data.forEach(function(elem) {
+       let rendered_recipe_data_element = renderRecipeDataElement(elem);
        $('.recipe_recipe')[0].innerHTML += rendered_recipe_data_element;
-    }
+    });
 }
 
+a = null;
 function renderRecipe(recipe) {
-    // Add filters to filter list 
-    for (var i = 0; i < recipe.groups.length; i+=1)
-        document.getElementById('filter__list').innerHTML += renderFilter(recipe.groups[i]);
+    a = recipe;
+    // Add filters to filter list
+    recipe.groups.forEach((elem) => document.getElementById('filter__list').innerHTML += renderFilter(elem.group));
 
     // Add recipe title 
     document.getElementById('recipe__title').innerHTML += recipe.title;

@@ -35,4 +35,4 @@ class RecipeGroup(models.Model):
     title = models.CharField(max_length=255, null=False, blank=False, verbose_name='Title')
 
     id = models.AutoField(primary_key=True, verbose_name='ID')
-
+    uuid = models.UUIDField(auto_created=True, default=uuid4, editable=False, verbose_name='UUID')
