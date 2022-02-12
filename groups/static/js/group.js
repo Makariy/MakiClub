@@ -1,4 +1,3 @@
-
 function getGetParameter(parameterName) {
     var result = null;
     location.search
@@ -39,8 +38,37 @@ function renderRecipe(recipe) {
 	`;
 }
 
+var recipes = null;
 
-a = null;
+
+function orderByTitle() {
+    $('.filters__filters_item').removeClass('active');
+    $('#filter-title').addClass('active');
+    let sorted = [...recipes].sort(function(first, second) {
+        if (first.recipe.title < second.recipe.title) return -1;
+        if (first.recipe.title > second.recipe.title) return 1;
+        else return 0;
+    });
+    $('.recipes__inner')[0].innerHTML = '';
+    sorted.forEach(function(item) {
+        let rendered = renderRecipe(item.recipe);
+        $('.recipes__inner')[0].innerHTML += rendered;
+    });
+}
+
+function orderByAll() {
+    $('.filters__filters_item').removeClass('active');
+    $('#filter-all').addClass('active');
+
+    $('.recipes__inner')[0].innerHTML = '';
+
+    recipes.forEach(function(item) {
+        let rendered = renderRecipe(item.recipe);
+        $('.recipes__inner')[0].innerHTML += rendered;
+    });
+}
+
+
 function loadRecipes() {
     var group_uuid = getGetParameter('group_uuid');
     if (group_uuid == null) {
@@ -50,11 +78,9 @@ function loadRecipes() {
         type: 'GET',
         url: '/groups/get/group/?group_uuid=' + group_uuid,
     }).done(function(data) {
+        recipes = data.recipes;
         $('.group__text-title')[0].innerHTML = data.group.title;
-        data.recipes.forEach(function(item) {
-            let rendered = renderRecipe(item.recipe);
-            $('.recipes__inner')[0].innerHTML += rendered;
-        });
+        orderByAll();
     });
 }
 

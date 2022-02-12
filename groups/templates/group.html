@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{% static '/css/style.css' %}">
 	<link rel="stylesheet" href="{% static '/css/group.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Roboto&family=Source+Sans+Pro&family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Caramel&family=Cookie&family=Fleur+De+Leah&family=Great+Vibes&family=Italianno&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{% static '/css/slick.css' %}">
@@ -105,26 +106,26 @@
 					</h4>
 				</div>
 				<ul class="filters__filters">
-					<li class="filters__filters_item active" id="filter-all">
-						<p class="filters__filters_item-text">
+					<button class="filters__filters_item active" onclick="orderByAll()" id="filter-all">
+						<li class="filters__filters_item-text">
 							All
-						</p>
-					</li>
-					<li class="filters__filters_item" id="filter-title">
-						<p class="filters__filters_item-text">
+						</li>
+					</button>
+					<button class="filters__filters_item" onclick="orderByTitle()" id="filter-title">
+						<li class="filters__filters_item-text">
 							Title
-						</p>
-					</li>
-					<li class="filters__filters_item" id="filter-popularity">
-						<p class="filters__filters_item-text">
+						</li>
+					</button>
+					<button class="filters__filters_item" id="filter-popularity">
+						<li class="filters__filters_item-text">
 							Popularity
-						</p>
-					</li>
-					<li class="filters__filters_item" id="filter-recent">
-						<p class="filters__filters_item-text">
+						</li>
+					</button>
+					<button class="filters__filters_item" id="filter-recent">
+						<li class="filters__filters_item-text">
 							Recent
-						</p>
-					</li>
+						</li>
+					</button>
 				</ul>
 
 			</div>
@@ -141,6 +142,45 @@
 			</div>
 		</div>
 	</section>
+
+	<section class="footer-section">
+        <div class="container">
+            <div class="footer">
+
+                <div class="footer__links">
+                    <ul class="footer__links_ul">
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/instagram.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/youtube.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/vk.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                        <li class="footer__links_ul_li">
+                            <a href="#" class="footer__links_ul_li-link">
+                                <img src="{% static 'img/facebook.svg' %}" alt="" class="footer__links_ul_li-link--img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__authors">
+                    <div class="footer__authors_author">
+                        <div class="footer__authors_author_title footer__authors_author_makariy">
+                            Makariy Corp.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 

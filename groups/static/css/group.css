@@ -23,7 +23,13 @@
     align-items: center;
     justify-content: center;
 }
-
+.filters button {
+    border: none;
+    background-color: transparent;
+}
+.filters button:hover {
+    cursor: pointer;
+}
 .filters__title {
     font-size: 24px;
     font-family: 'Lora', sans-serif;
