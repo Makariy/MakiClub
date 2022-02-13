@@ -56,6 +56,39 @@ function orderByTitle() {
     });
 }
 
+// Just for some time
+function orderByPopularity() {
+    $('.filters__filters_item').removeClass('active');
+    $('#filter-popularity').addClass('active');
+    let sorted = [...recipes].sort(function(first, second) {
+        if (first.recipe.uuid < second.recipe.uuid) return -1;
+        if (first.recipe.uuid > second.recipe.uuid) return 1;
+        else return 0;
+    });
+    $('.recipes__inner')[0].innerHTML = '';
+    sorted.forEach(function(item) {
+        let rendered = renderRecipe(item.recipe);
+        $('.recipes__inner')[0].innerHTML += rendered;
+    });
+}
+
+// Just for some time
+function orderByDate() {
+    $('.filters__filters_item').removeClass('active');
+    $('#filter-recent').addClass('active');
+    let sorted = [...recipes].sort(function(first, second) {
+        if (first.recipe.uuid < second.recipe.uuid) return -1;
+        if (first.recipe.uuid > second.recipe.uuid) return 1;
+        else return 0;
+    });
+    $('.recipes__inner')[0].innerHTML = '';
+    sorted.forEach(function(item) {
+        let rendered = renderRecipe(item.recipe);
+        $('.recipes__inner')[0].innerHTML += rendered;
+    });
+}
+
+
 function orderByAll() {
     $('.filters__filters_item').removeClass('active');
     $('#filter-all').addClass('active');

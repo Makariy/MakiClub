@@ -54,22 +54,29 @@ def ajax_get_groups(request):
 
 
 def ajax_get_recipe_data(request):
-    recipe_uuid = convert_string_to_uuid(request.GET.get('recipe_uuid'))
+    recipe_uuid = request.GET.get('recipe_uuid')
     if recipe_uuid:
-        recipe = get_recipe_by_params(uuid=recipe_uuid)
-        data = get_recipe_data(recipe)
-        return JsonResponse(data)
-    return HttpResponseBadRequest()
+        recipe_uuid = convert_string_to_uuid(recipe_uuid)
+        if recipe_uuid:
+            recipe = get_recipe_by_params(uuid=recipe_uuid)
+            data = get_recipe_data(recipe)
+            return JsonResponse(data)
+
+    return JsonResponse({
+        'status': 'fail'
+    })
 
 
 def ajax_get_recipe(request):
-    recipe_uuid = convert_string_to_uuid(request.GET.get('recipe_uuid'))
+    recipe_uuid = request.GET.get('recipe_uuid')
     if recipe_uuid:
-        recipe = get_recipe_by_params(uuid=recipe_uuid)
-        return JsonResponse({
-            **render_recipe(recipe),
-            'status': 'success'
-        })
+        recipe_uuid = convert_string_to_uuid(recipe_uuid)
+        if recipe_uuid:
+            recipe = get_recipe_by_params(uuid=recipe_uuid)
+            return JsonResponse({
+                **render_recipe(recipe),
+                'status': 'success'
+            })
 
     return JsonResponse({
         'status': 'fail'

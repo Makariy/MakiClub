@@ -26,7 +26,7 @@
 				<div class="menu__categories">
 					<ul class="menu__categories_list">
 						<li class="menu__categories_list_item">
-							<a href="#">Top</a>
+							<a href="{% url 'recipes_by_group' %}?group_uuid=6d5cda17-a9c2-410d-baaf-34586ee50652">Recent</a>
 						</li>
 						<li class="menu__categories_list_item">
 							<a href="#">Popular</a>
@@ -116,12 +116,12 @@
 							Title
 						</li>
 					</button>
-					<button class="filters__filters_item" id="filter-popularity">
+					<button class="filters__filters_item" onclick="orderByPopularity()" id="filter-popularity">
 						<li class="filters__filters_item-text">
 							Popularity
 						</li>
 					</button>
-					<button class="filters__filters_item" id="filter-recent">
+					<button class="filters__filters_item" onclick="orderByDate()" id="filter-recent">
 						<li class="filters__filters_item-text">
 							Recent
 						</li>
