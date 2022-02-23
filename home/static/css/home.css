@@ -232,7 +232,7 @@
 }
 .chefs__text-link {
 	margin: 15px 0 0 0;
-	background-color: #F1EBAB;
+	background-color: #fffdd0;
 	padding: 10px 20px;
 	border: 2px solid #d7d7d7;
 }
@@ -244,7 +244,7 @@
 	align-items: center;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	background-color: #F1EBAB;
+	background-color: #fffdd0;
 }
 .chefs__chefs_chef {
 	display: flex;

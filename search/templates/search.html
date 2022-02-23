@@ -6,7 +6,7 @@
     <title>Group</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static '/css/style.css' %}">
-	<link rel="stylesheet" href="{% static '/css/group.css' %}">
+	<link rel="stylesheet" href="{% static '/css/search.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Roboto&family=Source+Sans+Pro&family=Ubuntu&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Caramel&family=Cookie&family=Fleur+De+Leah&family=Great+Vibes&family=Italianno&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     <section class="menu-section">
 		<div class="container">
 			<div class="menu">
-
 				<div class="menu__logo">
 					<a href="{% url 'home' %}" class="menu__logo_logo">
 						Maki<span>Club</span>
@@ -81,54 +80,17 @@
 	</section>
 
 
-	<section class="group-section">
+	<section class="search-section">
 		<div class="container">
-			<div class="group">
-				<div class="group__text">
-					<h2 class="group__text-title">
-						<!-- Loading with ajax...-->
+			<div class="search">
+				<div class="search__text">
+					<h2 class="search__text-title">
+						<!-- Loading dynamically...-->
 					</h2>
-					<p class="group__text-description">
-						<!-- Loading with ajax...-->
+					<p class="search__text-description">
+						<!-- Loading dynamically...-->
 					</p>
 				</div>
-			</div>
-		</div>
-	</section>
-
-
-	<section class="filters-section">
-		<div class="container">
-			<div class="filters">
-
-				<div class="filters__title">
-					<h4 class="filters__title-title">
-						Filters:
-					</h4>
-				</div>
-				<ul class="filters__filters">
-					<button class="filters__filters_item active" onclick="orderByAll()" id="filter-all">
-						<li class="filters__filters_item-text">
-							All
-						</li>
-					</button>
-					<button class="filters__filters_item" onclick="orderByTitle()" id="filter-title">
-						<li class="filters__filters_item-text">
-							Title
-						</li>
-					</button>
-					<button class="filters__filters_item" onclick="orderByPopularity()" id="filter-popularity">
-						<li class="filters__filters_item-text">
-							Popularity
-						</li>
-					</button>
-					<button class="filters__filters_item" onclick="orderByDate()" id="filter-recent">
-						<li class="filters__filters_item-text">
-							Recent
-						</li>
-					</button>
-				</ul>
-
 			</div>
 		</div>
 	</section>
@@ -187,7 +149,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="{% static '/js/slick.min.js' %}"></script>
-	<script src="{% static '/js/group.js' %}"></script>
+	<script src="{% static '/js/search.js' %}"></script>
 	<script>
 		function menu_top_clicked() {
 			var menu = $('.menu-section');

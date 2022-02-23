@@ -118,5 +118,12 @@ function loadRecipes() {
 }
 
 
+function goSearch() {
+    let title = document.getElementById('menu__search_input').value;
+    if (title != null && title != "")
+        document.location.href = document.location.origin + `/search/?title=${encodeURI(title)}`;
+}
+
+
 window.onload = loadRecipes;
 
