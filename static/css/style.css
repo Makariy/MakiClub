@@ -60,6 +60,8 @@ li {
 }
 
 .menu__logo {
+    width: 20%;
+
 	font-size: 24px;
     font-weight: 700;
 
@@ -73,6 +75,9 @@ li {
 	padding: 10px 0;
 }
 
+.menu__categories {
+    width: 20%;
+}
 .menu__categories_list {
 	display: flex;
 	justify-content: space-between;
@@ -86,6 +91,8 @@ li {
 }
 
 .menu__search {
+    width: 20%;
+
 	display: flex;
 	align-items: center;
 }

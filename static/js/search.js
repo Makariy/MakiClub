@@ -56,11 +56,12 @@ function loadRecipes() {
 }
 
 
-function goSearch() {
-    let title = document.getElementById('menu__search_input').value;
-    if (title != null && title != "")
-        document.location.href = document.location.origin + `/search/?title=${encodeURI(title)}`;
+function preparePage() {
+    let title = getGetParameter('title');
+    document.getElementById('search__text-query').innerHTML = title;
+    loadRecipes();
 }
 
 
-window.onload = loadRecipes;
+
+window.onload = preparePage;
