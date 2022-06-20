@@ -1,0 +1,26 @@
+
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.recipe_recipe__data_title {
+	margin-top: 50px;
+	font-family: 'Lora', serif;
+	font-size: 30px;
+}
+.recipe_recipe__data_text {
+	color: #696969;
+	font-size: 18px;
+	font-family: 'Ubuntu';
+    margin-top: 20px;
+}
+.recipe_recipe__data_img {
+    margin-top: 20px;
+	max-height: 30vh;
+    max-width: 75vw;
+}
+
+
+

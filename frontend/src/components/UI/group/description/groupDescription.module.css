@@ -1,0 +1,12 @@
+
+.group__text {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.group__text_title {
+    font-size: 26px;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+}

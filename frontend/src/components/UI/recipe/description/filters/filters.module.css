@@ -1,0 +1,33 @@
+
+.filters_section {
+	margin-top: 50px;
+}
+.filters {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+}
+.filter__title {
+	font-size: 24px;
+	font-family: 'Lora', serif;
+}
+.filter__list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.filter__list_item {
+	background-color: #fffdd0;
+	padding: 10px 20px;
+}
+
+
+
+@media(max-width: 1000px) {
+    .filters {
+        flex-direction: column;
+    }
+}

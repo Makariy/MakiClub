@@ -1,0 +1,29 @@
+
+.footer_section {
+    margin-top: 10px;
+}
+.footer {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.footer__links_ul {
+    display: flex;
+}
+.footer__links_ul_li {
+    margin-left: 25px;
+}
+.footer__links_ul_li:first-child {
+    margin-left: 0;
+}
+
+
+.footer__authors {
+    margin-top: 20px;
+}
+.footer__authors_author_makariy {
+    font-size: 27px;
+    font-family: 'Fleur De Leah', cursive;
+}

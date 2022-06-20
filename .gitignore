@@ -1,3 +1,5 @@
-env/
+src/venv/
+data/
 .idea/
-__pycache__/
+*/__pycache__/
+frontend/node_modules

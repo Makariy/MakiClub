@@ -1,0 +1,75 @@
+.recommendation {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.recommendation__best_today {
+	width: 55%;
+}
+.recommendation__best_today_image {
+	position: relative;
+	max-height: 75vh;
+	overflow: hidden;
+}
+.recommendation__best_today_image_img {
+	height: 100%;
+	width: 100%;
+}
+.recommendation__best_today_image_text {
+	color: #222;
+	font-family: 'Lora', serif;
+	font-weight: 400;
+
+	text-align: center;
+	background-color: #fff;
+	opacity: 0.9;
+
+	width: 70%;
+	padding: 15px;
+
+	position: absolute;
+	bottom: 10%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.recommendation__best_today_image_text_inner {
+	border: 2px solid #f0e965;
+	padding: 20px;
+}
+.recommendation__best_today_image_text_title {
+	font-weight: 600;
+	font-style: italic;
+	font-size: 30px;
+}
+.recommendation__best_today_image_text_description {
+	font-weight: 400;
+}
+.recommendation__best_today_image_text_link {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+
+@media(max-width: 1440px) {
+    .recommendation__best_today {
+        width: 100%;
+    }
+}
+
+@media(max-width: 540px) {
+    .recommendation__best_today_image_text {
+        width: 85%;
+    }
+ }
+
+@media(max-width: 450px) {
+    .recommendation__best_today_image_text_title {
+        font-size: 22px;
+    }
+    .recommendation__best_today_image_text_description {
+        font-size: 14px;
+        margin: 5px;
+    }
+}

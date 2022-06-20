@@ -1,0 +1,10 @@
+.groups {
+	position: relative;
+	z-index: 0;
+	padding: 50px 0;
+	background-color: rgba(255,253,222,1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}

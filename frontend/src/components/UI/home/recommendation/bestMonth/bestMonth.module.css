@@ -1,0 +1,54 @@
+
+.recommendation__best_month {
+	width: 45%;
+	position: relative;
+	z-index: 0;
+
+	background: rgb(255,255,255);
+	background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,253,222,1) 100%);
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.recommendation__best_month_logo {
+	width: fit-content;
+
+	font-size: 36px;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+}
+.recommendation__best_month_logo span {
+	background-color: #fffdd0;
+	border-radius: 25%;
+	padding: 15px 0;
+}
+
+
+.recommendation__best_month_title {
+	margin-top: 45px;
+	margin-left: 25px;
+	margin-right: 25px;
+	font-size: 30px;
+    font-family: 'Lora', sans-serif;
+    text-decoration: underline;
+    text-decoration-color: #f0e965;
+}
+.recommendation__best_month_list {
+	margin-top: 25px;
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+
+
+@media(max-width: 1440px) {
+   .recommendation__best_month {
+        width: 100%;
+    }
+}
