@@ -1,5 +1,7 @@
 src/venv/
-data/
+www/recipes/images/*
+www/recipes/previews/*
+www/recipes/recipes/*
 .idea/
 */__pycache__/
 frontend/node_modules

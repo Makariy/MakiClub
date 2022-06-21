@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import classes from './bestToday.module.css';
 import { fetchBestToday } from '../../../../../API/fetcher';
+
 
 
 const BestToday = (props) => {
@@ -27,9 +29,10 @@ const BestToday = (props) => {
                                 <p className={classes.recommendation__best_today_image_text_description}>
                                     {recipe.description}
                                 </p>
-                                <a href={"/recipes/recipe/?recipe_uuid=" + recipe.uuid} className={classes.recommendation__best_today_image_text_link}>
+                                <Link to={"/recipes/recipe/?recipe_uuid=" + recipe.uuid} replace 
+                                    className={classes.recommendation__best_today_image_text_link}>
                                     Get the recipe {'>'} 
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

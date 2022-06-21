@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'MakiClub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_makiclub',
+        'NAME': 'makiclub',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

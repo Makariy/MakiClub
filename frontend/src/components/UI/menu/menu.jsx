@@ -13,7 +13,7 @@ const Menu = (props) => {
 
     const goSearch = () => {
         if (search_query.length > 0)
-            document.location.href = document.location.origin + `/search/?title=${encodeURI(search_query)}`;
+            document.location.to = document.location.origin + `/search/?title=${encodeURI(search_query)}`;
     }
 
     const onSearchInput = e => { 
@@ -38,16 +38,16 @@ const Menu = (props) => {
                     <div className={classes.menu__categories}>
                         <ul className={classes.menu__categories_list}>
                             <li className={classes.menu__categories_list_item}>
-                                <a href="/groups/group/?group_uuid=6d5cda17-a9c2-410d-baaf-34586ee50652">Recent</a>
+                                <Link to="/groups/group/?group_uuid=6d5cda17-a9c2-410d-baaf-34586ee50652" replace>Recent</Link>
                             </li>
                             <li className={classes.menu__categories_list_item}>
-                                <a href="#">Popular</a>
+                                <Link to="#" replace>Popular</Link>
                             </li>
                             <li className={classes.menu__categories_list_item}>
-                                <a href="#">Offers</a>
+                                <Link to="#" replace>Offers</Link>
                             </li>
                             <li className={classes.menu__categories_list_item}>
-                                <a href="#">Best</a>
+                                <Link to="#" replace>Best</Link>
                             </li>
                         </ul>
                     </div>
@@ -87,9 +87,9 @@ const Menu = (props) => {
                     </div>
 
                     <div className={classes.menu__logo}>
-                        <a href="/" className={classes.menu__logo_logo}>
+                        <Link to="/" replace className={classes.menu__logo_logo}>
                             Maki<span>Club</span>
-                        </a>
+                        </Link>
                     </div>
 
                 </div>

@@ -2,7 +2,7 @@
 RECIPES_LIST_URL = 'https://www.simplyrecipes.com/most-recent-5121175'
 
 
-DATA_SAVING_PATH = '../data'
+DATA_SAVING_PATH = '../www/recipes'
 
 RECIPES_DATA_PATH = 'recipes/'
 RECIPES_IMAGES_PATH = 'images/'

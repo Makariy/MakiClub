@@ -1,5 +1,5 @@
 import classes from './recipe.module.css';
-
+import { Link } from 'react-router-dom';
 
 
 const Recipe = ({title, preview_url, description, uuid}) => {
@@ -8,7 +8,7 @@ const Recipe = ({title, preview_url, description, uuid}) => {
     let description_ = description.length > 65 ? description.substr(0, 65) + "..." : title;
 
     return (
-      <a className={classes.recipe__item} href={"/recipes/recipe/?recipe_uuid=" + uuid}>
+      <Link className={classes.recipe__item} to={"/recipes/recipe/?recipe_uuid=" + uuid} replace>
         <img className={classes.recipe__item_image} src={'/recipes/' + preview_url}/>
         <div className={classes.recipe__item_text}>
           <p className={classes.recipe__item_text_title}>
@@ -18,7 +18,7 @@ const Recipe = ({title, preview_url, description, uuid}) => {
             {description_}
           </p>
         </div>
-      </a>
+      </Link>
     );
   }
 
